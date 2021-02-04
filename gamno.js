@@ -1,2 +1,2 @@
 console.log("ja debil")
-console.log(20-15)
+console.log("sviatik na push")
