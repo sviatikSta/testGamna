@@ -1,2 +1,2 @@
 console.log("ja debil")
-console.log(2+2)
+console.log(3+7)
