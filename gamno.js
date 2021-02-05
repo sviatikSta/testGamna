@@ -19,6 +19,8 @@ db.connect((err) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+app.listen(8000)
+
 app.get('/createuser',(req,res) => {
 let user = {name:"debil",surname:"debilovych",email:"debil@debil.com",phone:"123123123",password:""}
 let sql = "INSERT INTO users set ?"
@@ -62,7 +64,6 @@ let query  = db.query(sql,(err,result) =>{
 	});
 });
 
-app.listen(3000)
 app.get("/", function(req, res) {
 	res.sendFile(__dirname + "/login.html");
 
