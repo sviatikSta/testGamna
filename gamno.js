@@ -16,6 +16,9 @@ db.connect((err) => {
 	console.log("My sql connected")
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
 app.get('/createuser',(req,res) => {
 let user = {name:"debil",surname:"debilovych",email:"debil@debil.com",phone:"123123123",password:""}
 let sql = "INSERT INTO users set ?"
@@ -61,8 +64,18 @@ let query  = db.query(sql,(err,result) =>{
 
 app.listen(3000)
 app.get("/", function(req, res) {
-	res.send("<a href='/j'>перейти кудась</a>")
-})
+	res.sendFile(__dirname + "/login.html");
+
+});
+
+app.post("/",(req,res) =>{
+	var newEmail = req.body.email;
+	if(newEmail){
+		console.log(newEmail)
+	}
+	else {console.log("nema")}
+	res.json(req.body);
+});
 
 app.get("/j", function(req, res) {
 	// res.send("<h1>Я дурнуватий</h1>")
