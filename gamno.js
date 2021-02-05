@@ -17,7 +17,7 @@ db.connect((err) => {
 });
 
 app.get('/createuser',(req,res) => {
-let user = {name:"debil",surname:"debilovych",email:"debil@debil.com",phone:"123123123",password:"3"}
+let user = {name:"debil",surname:"debilovych",email:"debil@debil.com",phone:"123123123",password:""}
 let sql = "INSERT INTO users set ?"
 let query  = db.query(sql,user,(err,result) =>{
 	if(err) throw err;
@@ -35,6 +35,29 @@ let query  = db.query(sql,(err,result) =>{
 	});
 });
 
+app.get('/deleteuser/:id',(req,res) => {
+let sql = `DELETE FROM users WHERE id = ${req.params.id}`;
+let query  = db.query(sql,(err,result) =>{
+	console.log(result);
+	res.send("User deleted");
+	});
+});
+
+app.get('/getuser/:id',(req,res) => {
+let sql = `SELECT * FROM users WHERE id = ${req.params.id}`;
+let query  = db.query(sql,(err,result) =>{
+	console.log(result);
+	res.json(result);
+	});
+});
+
+app.get('/getuser',(req,res) => {
+let sql = `SELECT * FROM users`;
+let query  = db.query(sql,(err,result) =>{
+	console.log(result);
+	res.json(result);
+	});
+});
 
 app.listen(3000)
 app.get("/", function(req, res) {
