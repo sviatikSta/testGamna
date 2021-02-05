@@ -26,6 +26,15 @@ let query  = db.query(sql,user,(err,result) =>{
 	});
 });
 
+app.get('/updateuser/:id',(req,res) => {
+let newName = "Durak"
+let sql = `UPDATE users SET name = '${newName}' WHERE id = ${req.params.id}`;
+let query  = db.query(sql,(err,result) =>{
+	console.log(result);
+	res.send("User updated");
+	});
+});
+
 
 app.listen(3000)
 app.get("/", function(req, res) {
